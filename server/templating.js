@@ -66,4 +66,15 @@ class BoardTemplate extends Template {
     }
 }
 
-module.exports = { Template, BoardTemplate };
+class ViewTemplate extends Template {
+    parameters(parsedUrl, request) {
+        const params = super.parameters(parsedUrl, request);
+        const parts = parsedUrl.pathname.split('view/', 2);
+        const boardUriComponent = parts[1];
+        params['boardUriComponent'] = boardUriComponent;
+        params['board'] = decodeURIComponent(boardUriComponent);
+        return params;
+    }
+}
+
+module.exports = { Template, BoardTemplate, ViewTemplate };

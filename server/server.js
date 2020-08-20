@@ -66,6 +66,7 @@ function handler(request, response) {
 }
 
 const boardTemplate = new templating.BoardTemplate(path.join(config.WEBROOT, 'board.html'));
+const viewTemplate = new templating.ViewTemplate(path.join(config.WEBROOT, 'view.html'));
 const indexTemplate = new templating.Template(path.join(config.WEBROOT, 'index.html'));
 
 function validateBoardName(boardName) {
@@ -90,6 +91,24 @@ function handleRequest(request, response) {
 				validateBoardName(parts[1]);
 				// If there is no dot and no directory, parts[1] is the board name
 				boardTemplate.serve(request, response);
+			} else { // Else, it's a resource
+				request.url = "/" + parts.slice(1).join('/');
+				fileserver(request, response, serveError(request, response));
+			}
+			break;
+
+		case "view":
+			console.log('I have a view!!!')
+			// "view" refers to the root directory
+			if (parts.length === 1 && parsedUrl.query.board) {
+				// '/view?board=...' This allows html forms to point to views
+				var headers = { Location: 'view/' + encodeURIComponent(parsedUrl.query.board) };
+				response.writeHead(301, headers);
+				response.end();
+			} else if (parts.length === 2 && request.url.indexOf('.') === -1) {
+				validateBoardName(parts[1]);
+				// If there is no dot and no directory, parts[1] is the board name
+				viewTemplate.serve(request, response);
 			} else { // Else, it's a resource
 				request.url = "/" + parts.slice(1).join('/');
 				fileserver(request, response, serveError(request, response));
