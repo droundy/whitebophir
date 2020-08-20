@@ -41,7 +41,6 @@ Tools.server_config = JSON.parse(document.getElementById("configuration").text);
 Tools.board = document.getElementById("board");
 Tools.svg = document.getElementById("canvas");
 Tools.drawingArea = Tools.svg.getElementById("drawingArea");
-console.log('hello world now', Tools.svg)
 
 //Initialization
 Tools.curTool = null;
@@ -63,7 +62,6 @@ Tools.connect = function () {
 		self.socket = null;
 	}
 
-	console.log('path is', window.location.pathname.split("/view/")[0] + "/socket.io")
 	this.socket = io.connect('', {
 		"path": window.location.pathname.split("/view/")[0] + "/socket.io",
 		"reconnection": true,
@@ -444,7 +442,6 @@ Tools.setScale = function setScale(scale) {
 		Tools.svg.style.willChange = 'auto';
 	}, 1000);
 	Tools.scale = scale;
-	console.log('setting scale to', scale)
 	return scale;
 }
 Tools.getScale = function getScale() {

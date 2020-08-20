@@ -35,6 +35,7 @@
         "create_private_board": "Create a private board",
         "named_private_board_description": "You can also create a <strong>named private board</strong>, with a custom URL, that will be accessible to all those who know its name.",
         "board_name_placeholder": "Name of the board…",
+        "view": "View",
         "view_source": "Source code on GitHub"
     },
     "de": {
