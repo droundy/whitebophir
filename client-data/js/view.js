@@ -41,6 +41,7 @@ Tools.server_config = JSON.parse(document.getElementById("configuration").text);
 Tools.board = document.getElementById("board");
 Tools.svg = document.getElementById("canvas");
 Tools.drawingArea = Tools.svg.getElementById("drawingArea");
+console.log('hello world now', Tools.svg)
 
 //Initialization
 Tools.curTool = null;
@@ -62,7 +63,7 @@ Tools.connect = function () {
 		self.socket = null;
 	}
 
-
+	console.log('path is', window.location.pathname.split("/view/")[0] + "/socket.io")
 	this.socket = io.connect('', {
 		"path": window.location.pathname.split("/view/")[0] + "/socket.io",
 		"reconnection": true,
@@ -132,9 +133,9 @@ Tools.HTML = {
 		if (newTool) newTool.classList.add("curTool");
 	},
 	toggle: function (toolName, name, icon) {
-		var elem = document.getElementById("toolID-" + toolName);
-		elem.getElementsByClassName("tool-icon")[0].src = icon;
-		elem.getElementsByClassName("tool-name")[0].textContent = Tools.i18n.t(name);
+		// var elem = document.getElementById("toolID-" + toolName);
+		// elem.getElementsByClassName("tool-icon")[0].src = icon;
+		// elem.getElementsByClassName("tool-name")[0].textContent = Tools.i18n.t(name);
 	},
 	addStylesheet: function (href) {
 		//Adds a css stylesheet to the html or svg document
@@ -211,7 +212,7 @@ Tools.add = function (newTool) {
 	}
 
 	//Add the tool to the GUI
-	Tools.HTML.addTool(newTool.name, newTool.icon, newTool.iconHTML, newTool.shortcut, newTool.oneTouch);
+	// Tools.HTML.addTool(newTool.name, newTool.icon, newTool.iconHTML, newTool.shortcut, newTool.oneTouch);
 };
 
 Tools.change = function (toolName) {
@@ -280,9 +281,9 @@ Tools.removeToolListeners = function removeToolListeners(tool) {
 (function () {
 	// Handle secondary tool switch with shift (key code 16)
 	function handleShift(active, evt) {
-		if (evt.keyCode === 16 && Tools.curTool.secondary && Tools.curTool.secondary.active !== active) {
-			Tools.change(Tools.curTool.name);
-		}
+		// if (evt.keyCode === 16 && Tools.curTool.secondary && Tools.curTool.secondary.active !== active) {
+		// 	Tools.change(Tools.curTool.name);
+		// }
 	}
 	window.addEventListener("keydown", handleShift.bind(null, true));
 	window.addEventListener("keyup", handleShift.bind(null, false));
@@ -435,7 +436,7 @@ Tools.scale = 1.0;
 var scaleTimeout = null;
 Tools.setScale = function setScale(scale) {
 	if (isNaN(scale)) scale = 1;
-	scale = Math.max(0.1, Math.min(10, scale));
+	scale = Math.max(0.01, Math.min(10, scale));
 	Tools.svg.style.willChange = 'transform';
 	Tools.svg.style.transform = 'scale(' + scale + ')';
 	clearTimeout(scaleTimeout);
@@ -443,6 +444,7 @@ Tools.setScale = function setScale(scale) {
 		Tools.svg.style.willChange = 'auto';
 	}, 1000);
 	Tools.scale = scale;
+	console.log('setting scale to', scale)
 	return scale;
 }
 Tools.getScale = function getScale() {

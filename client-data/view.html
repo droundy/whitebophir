@@ -43,10 +43,10 @@
 				</li>
 			</ul>
 
-			<ul class="tools" id="settings">
-				<li class="tool" tabindex="-1" hidden>
-					<input hidden class="tool-icon" type="color" id="chooseColor" value="#1913B0" />
-					<label hidden class="tool-name" for="chooseColor">{{translations.color}}</label>
+			<ul hidden class="tools" id="settings">
+				<li class="tool" tabindex="-1">
+					<input class="tool-icon" type="color" id="chooseColor" value="#1913B0" />
+					<label class="tool-name" for="chooseColor">{{translations.color}}</label>
 					<span class="colorPresets" id="colorPresetSel">
 						<span class="colorPresetButton"></span>
 					</span>
@@ -87,9 +87,18 @@
 	<script src="../js/path-data-polyfill.js"></script>
 	<script src="../js/minitpl.js"></script>
 	<script src="../js/view.js"></script>
+	<script src="../tools/pencil/wbo_pencil_point.js"></script>
+	<script src="../tools/pencil/pencil.js"></script>
 	<script src="../tools/cursor/cursor.js"></script>
+	<script src="../tools/line/line.js"></script>
+	<script src="../tools/rect/rect.js"></script>
+	<script src="../tools/ellipse/ellipse.js"></script>
+	<script src="../tools/text/text.js"></script>
+	<script src="../tools/eraser/eraser.js"></script>
 	<script src="../tools/hand/hand.js"></script>
+	<script src="../tools/grid/grid.js"></script>
 	<script src="../tools/zoom/zoom.js"></script>
+	<script src="../js/canvascolor.js"></script>
 </body>
 
 </html>
