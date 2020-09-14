@@ -83,6 +83,12 @@ html, body, svg {
 	padding:0;
 }
 
+@media print {
+	.tools {
+		display: none;
+	}
+}
+
 #settings {
 	margin-bottom: 0;
 }
