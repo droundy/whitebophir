@@ -183,7 +183,7 @@
     
 	function getSVGFromMathJax(rawTeX) {
 		let userColor = Tools.getColor();
-        let svgFromMathJax = MathJax.tex2svg("\\color{" + userColor + "}" + rawTeX, {display: true});
+        let svgFromMathJax = MathJax.tex2svg("\\color{" + userColor + "}\\begin{align}" + rawTeX + '\\end{align}', {display: true});
 		let svgOnly = svgFromMathJax.children[0];
 		// Split the viewBox into separate strings
 		var strArrViewBox = svgOnly.getAttribute("viewBox").split(" ");
